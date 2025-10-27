@@ -12,13 +12,19 @@ This project was built as part of the Signpost Assignment using only HTML, CSS, 
 🚀 Features
 
 ✅ Real-Time Search — Filters the company list instantly as the user types a keyword.
+
 ✅ Keyword-Based Results — Displays companies related to the entered keyword.
+
 ✅ Responsive Design — Works smoothly on desktop, tablet, and mobile devices.
+
 ✅ Simple UI/UX — Clean layout with easy navigation.
+
 ✅ Dynamic Listing Order — (Optional enhancement) Companies can be sorted by subscription level — high-paying companies appear first, followed by medium and non-paid listings.
 
 🛠️ Technologies Used
 
 HTML5: Structure of the webpage
+
 CSS3: Styling and responsive layout
+
 JavaScript (ES6): Dynamic search and filtering functionality
