@@ -1,0 +1,333 @@
+:root {
+      color-scheme: light;
+      font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --bg: #f7f8fb;
+      --card: #fff;
+      --text-dark: #1f2933;
+      --text-muted: #5f6c80;
+      --border: #e1e4eb;
+      --tier-high: #ff4d6d;
+      --tier-low: #2563eb;
+      --tier-none: #8ddea7;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 16px 64px;
+      gap: 16px;
+    }
+    .app {
+      width: min(1200px, 100%);
+      display: grid;
+      gap: 24px;
+    }
+    header {
+      text-align: center;
+    }
+    .brand-logo {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+      margin-left: 16px;
+    }
+    .brand-logo img {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+    h1 {
+      margin-bottom: 8px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+    .search-bar {
+      margin-top: 24px;
+      position: relative;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      background: var(--card);
+      color: inherit;
+      box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+    }
+    .results {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .company-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 35px rgba(15, 23, 42, 0.08);
+      cursor: pointer;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .company-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 45px rgba(15, 23, 42, 0.15);
+      background: #a0bafc;
+      border-color: rgba(37, 99, 235, 0.25);
+    }
+    .company-card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .company-card p {
+      margin: 8px 0 0;
+      color: var(--text-muted);
+    }
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 12px;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-dark);
+    }
+    .tier-high {
+      border-left: 4px solid var(--tier-high);
+    }
+    .tier-low {
+      border-left: 4px solid var(--tier-low);
+    }
+    .tier-none {
+      border-left: 4px solid var(--tier-none);
+    }
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 12px 0 0;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--tier-low);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .location-badge svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+    .keyword-list {
+      margin: 16px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .keyword-chip {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      background: #f5f7ff;
+      color: var(--text-muted);
+    }
+    .keyword-chip[data-tier="high"] {
+      border-color: var(--tier-high);
+      color: var(--tier-high);
+    }
+    .keyword-chip[data-tier="low"] {
+      border-color: var(--tier-low);
+      color: var(--tier-low);
+    }
+    .keyword-chip[data-tier="none"] {
+      border-color: var(--tier-none);
+      color: var(--tier-none);
+    }
+    .empty-state,
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--card);
+      border-radius: 20px;
+      border: 1px dashed var(--border);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    .details-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+    .details-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .details-card {
+      width: min(640px, 100%);
+      background: var(--card);
+      border-radius: 24px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 40px 70px rgba(15, 23, 42, 0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .enquiry-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: var(--tier-low);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+    }
+    .enquiry-button:hover,
+    .enquiry-button:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 28px rgba(37, 99, 235, 0.35);
+    }
+    .enquiry-card {
+      margin-top: 20px;
+      width: 100%;
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      border: 1px solid var(--border);
+    }
+    .enquiry-card.open {
+      display: flex;
+    }
+    .enquiry-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .enquiry-card__header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+    .enquiry-card .close-enquiry {
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .enquiry-company {
+      margin: 0;
+      font-weight: 600;
+      color: var(--tier-low);
+    }
+    .enquiry-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .enquiry-field input,
+    .enquiry-field textarea {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+    .enquiry-card__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .enquiry-card__actions button,
+    .enquiry-card__actions a {
+      flex: 1;
+      min-width: 140px;
+    }
+    .primary-button {
+      border: none;
+      border-radius: 14px;
+      padding: 12px 16px;
+      background: var(--tier-high);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(255, 77, 109, 0.25);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .primary-button:hover,
+    .primary-button:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 30px rgba(255, 77, 109, 0.35);
+    }
+    .call-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--tier-low);
+      color: var(--tier-low);
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 150ms ease, color 150ms ease;
+      cursor: default;
+      user-select: text;
+    }
+    .close-button {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      border: none;
+      background: transparent;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+      .details-card {
+        padding: 24px 20px;
+      }
+    }

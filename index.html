@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barath Assignment</title>
+      <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="brand-logo" href="https://celfon.in" target="_blank" rel="noreferrer">
+    <img src="https://celfon.in/assets/images/brand/celfon-logo.png" alt="Celfon logo">
+  </a>
+  <main class="app">
+    <header>
+      <h1>Signpost celfon</h1>
+      <p>Signpost Links Mobile to Mobile for Business Growth
+Through Print, Digital, Search & Digital Marketing Media</p>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search for keywords..." autofocus>
+      </div>
+    </header>
+    <section id="results" class="results" aria-live="polite">
+      <div class="empty-state">Start typing to see matching companies.</div>
+    </section>
+  </main>
+  <div id="detailsOverlay" class="details-overlay" role="dialog" aria-modal="true" aria-labelledby="detailsTitle">
+    <article class="details-card">
+      <button class="close-button" type="button" aria-label="Close details" data-close>&times;</button>
+      <h2 id="detailsTitle"></h2>
+      <p id="detailsSector" class="tier-badge"></p>
+      <p id="detailsDescription"></p>
+      <div id="detailsLocation" class="location-badge" hidden></div>
+      <h3>Keywords</h3>
+      <div id="detailsKeywords" class="keyword-list"></div>
+      <button id="enquiryLink" class="enquiry-button" type="button">Enquiry</button>
+      <div id="enquiryCard" class="enquiry-card" role="dialog" aria-live="polite" aria-label="Enquiry form">
+        <div class="enquiry-card__header">
+          <h3>Quick enquiry</h3>
+          <button class="close-enquiry" type="button" aria-label="Close enquiry form" data-close-enquiry>&times;</button>
+        </div>
+        <p class="enquiry-company" id="enquiryCompanyName"></p>
+        <label class="enquiry-field">
+          <span>Message</span>
+          <textarea id="enquiryMessage" rows="3" placeholder="Let us know how we can help"></textarea>
+        </label>
+        <label class="enquiry-field">
+          <span>Email</span>
+          <input id="enquiryEmail" type="email" placeholder="you@example.com">
+        </label>
+        <div class="enquiry-card__actions">
+          <button id="sendEnquiry" class="primary-button" type="button">Send email</button>
+          <div id="enquiryCallButton" class="call-button">Call <span id="enquiryCardNumber"></span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+        <script src="script.js"></script>
+</body>
+</html>
